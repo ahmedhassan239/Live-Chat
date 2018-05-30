@@ -8,20 +8,23 @@
 	<style type="text/css">
 		 .list-group{
 			overflow-y: scroll;
-			height: 100px;
+			height: 200px;
 		}
 	</style>
 </head>
 <body>
 <div class="container">
 	<div class="row" id="app">
-		<div class="offset-4 col-md-4">	
-			<li class="list-group-item active">Chat Room</li>
+		<div class="offset-4 col-4 offset-sm-1 col-sm-6">	
+			<li class="list-group-item active">Chat Room <span class="badge badge-pill badge-danger">@{{numberOfUsers}} : pebole online</span></li>
+			<div class="badge badge-pill badge-primary">@{{ typing}}</div>
 			<ul class="list-group" v-chat-scroll>
 			  <message
-			  v-for="value in chat.message"
+			  v-for="value,index in chat.message"
 			  :key=value.index
-			  color	='success'
+			  :color	=chat.color[index]
+			  :user = chat.user[index]
+			  :time = chat.time[index]
 			  >
 			  	@{{value}}	
 			  </message>
